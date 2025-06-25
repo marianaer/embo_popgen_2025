@@ -70,6 +70,9 @@ The posterior distribution (Beta-Binomial model) is a Beta distribution with par
 If we set $\alpha=\beta=1$ then $P(p|k,n)=Beta(k+1,n-k+1)$.
 What are $k$ and $n$?
 
+In this case it would be Beta(alpha,Beta)=Beta(40+1, 200-40+1).
+So alpha=41, beta=161.
+
 $n$ is the number of alleles we sample and $k$ is the occurrence of allele $G$ in our sample.
 
 __A)__ 
@@ -79,7 +82,27 @@ Plot the posterior probability, assuming a uniform prior (alpha = beta = 1). The
 What happens to the distribution if we have only 10 samples (with the sample allele frequency of 0.20)?
 
 ```{r}
-#...
+
+prob_vectors<-(seq(0,1,length=100)) # vector of probabilities from 0 to 1 (prior)
+
+# to dbeta we pass the probability vectors (0 a 1) and alpha (41) and beta (161) 
+
+k=40
+n=200
+
+#shape1 is alpha
+#shape2 is beta
+
+alpha=k+1
+beta=n-k+1
+
+plot(dbeta(prob_vectors,alpha,beta))
+
+
+### Maximum a posteriori value would be 20/1000 (porque va de 0 a 1)
+# Max posteriori value 0.2
+
+
 ```
 
 We can think of a more informative prior.
@@ -105,7 +128,9 @@ choices regarding the parameter for the Beta distribution) both in the case of 1
 Discuss how these results compare to the previous ones obtained in point A.
 
 ```{r}
-#...
+xs<-seq(0,10,0.01)
+ys<-xs^-1
+
 ```
 
 __C)__ (bonus)
@@ -114,5 +139,8 @@ Calculate the Bayes factor for a model with $p<=0.5$ vs a model with $p>0.5$. No
 
 ```{r}
 #...
+
+
+
 ```
 
